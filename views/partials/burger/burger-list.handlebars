@@ -1,0 +1,11 @@
+<li class="list-group-item d-flex justify-content-between align-items-center">
+	{{this.id}}. {{this.burger_name}}
+	<div class="form-inline">
+		<button class="status-btn btn btn-danger btn-sm" data-id="{{this.id}}" data-status="{{this.devoured}}">
+			{{#if this.devoured}} Vomit!!! {{else}} Devour!!! {{/if}}
+		</button>
+		<button class="deleteBtn" data-id="{{this.id}}" data-burger="{{this.burger_name}}">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+</li>

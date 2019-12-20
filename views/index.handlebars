@@ -1,0 +1,72 @@
+<div class="container">
+  <nav class="navbar">
+    <h1 class="navbar-brand">Eat-Da-Burger!</h1>
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#historyData">
+      History
+    </button>
+    <div class="modal fade" id="historyData" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalScrollableTitle">Deleted Burgers</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="row modal-body">
+            <div class="col p-3">
+              <ul class="list-group" id="deleteList">
+                {{#each histories}}
+                {{> burger/history-list}}
+                {{/each}}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <img class="mb-5" src="/assets/image/burger.jpg" id="burgerPic">
+  <div class="row justify-content-center">
+    <div class="col-md-4 p-3 mb-5" id="addBurger">
+      <h2>Add a Burger</h2>
+      <form class="create-form">
+        <div class="form-group">
+          <label for="bn">Burger Name:</label>
+          <input type="text" id="bn" name="burger_name">
+        </div>
+        <button type="submit" class="btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="row justify-content-around">
+    <div class="col-md-5 p-3 align-self-start" id="wishList">
+      <div class="col-12">
+        <h2>Desired Burgers</h2>
+        <ul class="list-group" id="desireList">
+          {{#each burgers}}
+          {{#unless this.devoured}}
+          {{> burger/burger-list}}
+          {{/unless}}
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+
+
+    <div class="col-md-5 p-3 align-self-start" id="doneList">
+      <div class="col-12">
+        <h2>Devoured Burgers</h2>
+        <ul class="list-group" id="eatenList">
+          {{#each burgers}}
+          {{#if this.devoured}}
+          {{> burger/burger-list}}
+          {{/if}}
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
