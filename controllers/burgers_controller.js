@@ -8,7 +8,7 @@ var history = require("../models/history");
 
 router.get("/", function (req, res) {
     burger.all(function (burger) {
-        history.all(function(history){
+        history.all(function (history) {
             var allBurger = {
                 burgers: burger,
                 histories: history
@@ -20,9 +20,11 @@ router.get("/", function (req, res) {
 
 router.post("/api/burgers", function (req, res) {
     burger.create(req.body.burger_name, function (data) {
-        history.delete(req.body.id,function(data1){
-            res.status(200).end();
-        });
+        if (req.body.id) {
+            history.delete(req.body.id, function (data1) {
+                res.status(200).end();
+            });
+        }else res.status(200).end();
     });
 });
 
@@ -34,7 +36,7 @@ router.put("/api/burgers/:id", function (req, res) {
 
 router.delete("/api/burgers/:id/:burger_name", function (req, res) {
     burger.delete(req.params.id, function (data1) {
-        history.create(req.params.burger_name,function(data2){
+        history.create(req.params.burger_name, function (data2) {
             res.status(200).end();
         });
     });
